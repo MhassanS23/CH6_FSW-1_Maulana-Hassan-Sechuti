@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+}
+
+.swiper-wrapper{
+  max-width: 40%;
+}
+
+/* .swiper-button-next{
+  font-size: 1rem;
+  color: var(--color-white);
+  background: var(--color-green);
+  padding: 0.5rem 0.7rem; 
+  border-radius: 100%;
+}
+
+.swiper-button-prev{
+  font-size: 1rem;
+  color: black;
+  background: var(--color-white);
+  border: 1px solid grey;
+  padding: 0.5rem 0.7rem; 
+  border-radius: 100%;
+} */
