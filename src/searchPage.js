@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   CardBody,
   Card,
@@ -15,12 +15,21 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
 } from '@chakra-ui/react'
+
+import { useDispatch, useSelector} from 'react-redux';
+import { getDataCars } from './features/car/carsSlice.js';
+
 import Navbar from "./components/navbar/Navbar.js"
 import Footers from "./components/footer/Footer.js"
 import Headers from "./components/header/Header.js"
 
 
 function SearchPages() {
+  const cars = useSelector(state => state.cars.cars);
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(getDataCars());
+  },[dispatch]);
 
   return (
     <>
@@ -74,6 +83,10 @@ function SearchPages() {
             </CardBody>
         </Card>
       </Box>
+
+      {cars.length > 0 && cars.map(data => {
+        return <Text key={data.id}>{data.type}</Text>
+      })}
 
       <Footers/>
     </>

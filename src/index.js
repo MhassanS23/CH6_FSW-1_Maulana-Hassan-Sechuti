@@ -8,21 +8,25 @@ import './style.css';
 import Homepages from './Homepage';
 import SearchPages from './searchPage';
 
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react';
+import {store} from "./app/store.js";
+import {Provider} from "react-redux";
 
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Homepages />} />
-          <Route path="/search" element={<SearchPages />} />
-        </Routes>
-      </BrowserRouter>
-    </ChakraProvider>
+    <Provider store={store}>
+      <ChakraProvider theme={theme}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Homepages />} />
+            <Route path="/search" element={<SearchPages />} />
+          </Routes>
+        </BrowserRouter>
+      </ChakraProvider>
+    </Provider>
   </React.StrictMode>
 );
 

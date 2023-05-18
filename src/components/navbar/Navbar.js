@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import {
     Box,
     Button,
@@ -11,19 +11,40 @@ import {
     Text,
     Link,
     useDisclosure,
-    Drawer,
-    DrawerBody,
-    DrawerHeader,
-    DrawerOverlay,
-    DrawerContent,
-    DrawerCloseButton,
   } from '@chakra-ui/react'
-  import { FiMenu } from 'react-icons/fi'
+import ModalRegister from './ModalRegister.js'
+import SideMenu from './SideMenu.js'
+
+import { FiMenu } from 'react-icons/fi'
   
   export default function Navbar() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [navActive, setNavActive] = useState(false);
     const btnRef = React.useRef()
     const isDesktop = useBreakpointValue({ base: false, lg: true })
+
+    const {
+      isOpen: registerIsOpen,
+      onOpen: registerOnOpen,
+      onClose: registerOnClose,
+    } = useDisclosure();
+
+    const {
+      isOpen: sidemenuIsOpen,
+      onOpen: sidemenuOnOpen,
+      onClose: sidemenuOnClose,
+    } = useDisclosure();
+
+    const changeNav = () => {
+      window.scrollY >= 30 ? setNavActive(true) : setNavActive(false);
+    }
+
+    useEffect(()=> {
+      window.addEventListener("scroll", changeNav);
+
+      return () => {
+        window.removeEventListener("scroll", changeNav);
+      };
+    },[]);
 
     return (
       <Box 
@@ -31,12 +52,14 @@ import {
       position="fixed"
       zIndex="99"
       h="5rem"
+      bg={navActive ? "darkBlue" : "limeGreen"}
+      color = {navActive ? "white" : "black"}
       >
-        <Box bg="limeGreen">
+        <Box >
           <Container maxW="var(--chakra-sizes-container-xl)" py={{ base: '4', lg: '5' }}>
             <HStack spacing="10" justify="space-between">
             <Link href='/'>
-              <Text color="black" fontSize='1.5rem'>Sewo Mobil</Text>
+              <Text fontSize='1.5rem'>Sewo Mobil</Text>
             </Link>
               {isDesktop ? (
                 <Flex gap="2rem" justifyContent="flex-end" alignItems="center">
@@ -54,7 +77,7 @@ import {
                         FAQ
                     </Link>
                   </ButtonGroup>
-                    <Button bg="greenBn" color="white">Register</Button>
+                    <Button bg="greenBn" color="white" onClick={registerOnOpen}>Register</Button>
                 </Flex>
               ) : (
                 <>
@@ -63,43 +86,26 @@ import {
                   icon={<FiMenu fontSize="1.25rem" />}
                   aria-label="Open Menu"
                   ref={btnRef}
-                  onClick={onOpen}
+                  onClick={sidemenuOnOpen}
                 />
-                <Drawer
-                    isOpen={isOpen}
-                    placement='right'
-                    onClose={onClose}
-                    finalFocusRef={btnRef}
-                >
-                    <DrawerOverlay/>
-                    <DrawerContent>
-                    <DrawerCloseButton />
-                    <DrawerHeader>BCR</DrawerHeader>
-
-                    <DrawerBody>
-                    <Flex gap="2rem" flexDirection="column">
-                            <Link href='#ourservice'>
-                                Our Service
-                            </Link>
-                            <Link href='#whyus'>
-                                Why Us
-                            </Link>
-                            <Link href='#testimonial'>
-                                Testimonial
-                            </Link>
-                            <Link href='#faq'>
-                                FAQ
-                            </Link>
-                            <Button bg="greenBn" color="white">Register</Button>
-                    </Flex>
-                    </DrawerBody>
-                    </DrawerContent>
-                </Drawer>
                 </>
               )}
             </HStack>
           </Container>
         </Box>
+
+        <ModalRegister
+          isOpen={registerIsOpen}
+          onClose={registerOnClose}
+        />
+        <SideMenu
+          isOpen={sidemenuIsOpen}
+          onClose={sidemenuOnClose}
+          btnRef = {btnRef}
+          registerOnOpen = {registerOnOpen}
+        />
       </Box>
+
+      
     )
   }
