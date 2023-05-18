@@ -4,6 +4,7 @@ import {
   Card,
   Text,
   Flex,
+  Grid,
   Select,
   Box,
   FormLabel,
@@ -22,6 +23,7 @@ import { getDataCars } from './features/car/carsSlice.js';
 import Navbar from "./components/navbar/Navbar.js"
 import Footers from "./components/footer/Footer.js"
 import Headers from "./components/header/Header.js"
+import SearchCard from './components/card/SearchCard.js';
 
 
 function SearchPages() {
@@ -84,9 +86,14 @@ function SearchPages() {
         </Card>
       </Box>
 
-      {cars.length > 0 && cars.map(data => {
-        return <Text key={data.id}>{data.type}</Text>
-      })}
+{/* CARD FILTER RESULT */}
+      <Box width={"100%"} px={{base:"1rem", md:"6rem", lg:"6rem"}} mt={"2rem"}>
+        <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(1, 1fr)', lg: 'repeat(2, 1fr)', xl:"repeat(3, 1fr)" }} gap={"2rem"}>
+            {cars.length > 0 && cars.map(data => {
+              return <SearchCard key={data.id} cars={data}/>
+          })}
+        </Grid>
+      </Box>
 
       <Footers/>
     </>
