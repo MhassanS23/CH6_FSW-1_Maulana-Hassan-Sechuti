@@ -13,14 +13,15 @@ import {
     where,
     addDoc,
   } from "firebase/firestore";
-
+  
   const firebaseConfig = {
-    apiKey: "AIzaSyAF8cTCuN0ukmhLcs60Z27fjN6MgRsAQXQ",
-    authDomain: "lithe-center-386805.firebaseapp.com",
-    projectId: "lithe-center-386805",
-    storageBucket: "lithe-center-386805.appspot.com",
-    messagingSenderId: "551854693460",
-    appId: "1:551854693460:web:9b8f699ab1a7da92d5e1c1"
+    apiKey: "AIzaSyA2JVBWjrGV-vWFgR7GJknEbTvSeO5V9Xo",
+    authDomain: "autentication-b5e9a.firebaseapp.com",
+    projectId: "autentication-b5e9a",
+    storageBucket: "autentication-b5e9a.appspot.com",
+    messagingSenderId: "604542871023",
+    appId: "1:604542871023:web:420f97ac62904265fa421a",
+    measurementId: "G-Y7EZKP230K"
   };
 
 // Initialize Firebase

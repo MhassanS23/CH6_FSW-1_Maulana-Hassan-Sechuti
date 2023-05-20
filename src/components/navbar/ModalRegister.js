@@ -10,13 +10,13 @@ import {
     ModalCloseButton,
   } from '@chakra-ui/react'
 import { auth, signInWithGoogle, logout } from "../../firebase.js";
-import { useAuthState } from "react-firebase-hooks/auth";
+// import { useAuthState } from "react-firebase-hooks/auth";
 import {GoogleButton} from "react-google-button";
 
 
 export default function ModalRegister (props) {
     const { isOpen, onClose } = props;
-    const [user, loading, error] = useAuthState(auth);
+    // const [user, loading, error] = useAuthState(auth);
 
     return (
       <>

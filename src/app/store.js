@@ -5,4 +5,8 @@ export const store = configureStore ({
     reducer: {
         cars: carsReducer,
     },
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 })
