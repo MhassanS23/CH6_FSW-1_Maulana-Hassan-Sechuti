@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {
   CardBody,
   Card,
-  Text,
+  Heading,
   Flex,
   Grid,
   Select,
@@ -10,6 +10,7 @@ import {
   FormLabel,
   Input,
   Button,
+  GridItem,
 } from '@chakra-ui/react'
 import { useFormik } from "formik";
 
@@ -45,13 +46,13 @@ function SearchPages() {
     },
     onSubmit: (values) => {
       const datetime = new Date(`${values.tanggal} ${values.waktu}`)
-      if(values.driver == "true"  && values.penumpang !="" && values.tanggal != ""){
+      if(values.driver === "true"  && values.penumpang !="" && values.tanggal != ""){
           return dispatch(filteredDataCars(data.filter((cars)=>
-            cars.available == true && cars.capacity >= values.penumpang && cars.availableAt <= datetime
+            cars.available === true && cars.capacity >= values.penumpang && cars.availableAt <= datetime
           )));
-        }else if(values.driver == "false"  && values.penumpang !="" && values.tanggal != ""){
+        }else if(values.driver === "false"  && values.penumpang !="" && values.tanggal != ""){
           return dispatch(filteredDataCars(data.filter((cars)=>
-            cars.available == false && cars.capacity >= values.penumpang && cars.availableAt <= datetime
+            cars.available === false && cars.capacity >= values.penumpang && cars.availableAt <= datetime
           )));
         }
     }
@@ -163,7 +164,11 @@ function SearchPages() {
               return <SearchCard key={car.id} cars={car} />
           })) 
           :(
-            <Text>Not found</Text>
+            <>
+            <GridItem colSpan={3} >
+              <Heading size={"md"} textAlign="center" width={"100%"} > HASIL PENCARIAN TIDAK DITEMUKAN :) </Heading>
+            </GridItem>
+            </>
           ))
         }
 
