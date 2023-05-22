@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import theme from './theme/Theme';
 import './style.css';
@@ -9,25 +9,25 @@ import Homepages from './Homepage';
 import SearchPages from './searchPage';
 
 import { ChakraProvider } from '@chakra-ui/react';
-import {store} from "./app/store.js";
-import {Provider} from "react-redux";
+import {store} from './app/store.js';
+import {Provider} from 'react-redux';
 
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <ChakraProvider theme={theme}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Homepages />} />
-            <Route path="/search" element={<SearchPages />} />
-          </Routes>
-        </BrowserRouter>
-      </ChakraProvider>
-    </Provider>
-  </React.StrictMode>
+    <React.StrictMode>
+        <Provider store={store}>
+            <ChakraProvider theme={theme}>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<Homepages />} />
+                        <Route path="/search" element={<SearchPages />} />
+                    </Routes>
+                </BrowserRouter>
+            </ChakraProvider>
+        </Provider>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

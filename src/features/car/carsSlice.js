@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 
 
@@ -6,14 +6,14 @@ const initialState = {
     filterCars: [],
     loading: true,
     error: null,
-}
+};
 
 export const carSlice = createSlice({
-    name: "cars",
+    name: 'cars',
     initialState,
     reducers: {
         filteredDataCars: (state, action) =>{
-            state.filterCars = action.payload 
+            state.filterCars = action.payload; 
         },
     },
 });
